@@ -2,7 +2,7 @@
 
 public class ObjectPathFollower : MonoBehaviour
 {
-    private float _doubleClickDelayTime = 0.2f;
+    private const float DoubleClickDelayTime = 0.5f;
     private double _lastMouseClickTime;
     
     [HideInInspector] 
@@ -36,6 +36,6 @@ public class ObjectPathFollower : MonoBehaviour
 
     private bool IsDoubleClick()
     {
-        return Time.time - _lastMouseClickTime <= _doubleClickDelayTime;
+        return Time.time - _lastMouseClickTime <= DoubleClickDelayTime;
     }
 }
