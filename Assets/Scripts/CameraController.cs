@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private const float MinimumRotationAngleX = -90;
-    private const float MaximumRotationAngleX = 0;
+    private const float MinimumVerticalRotationAngle = -90;
+    private const float MaximumVerticalRotationAngle = 0;
     private const float NearestZoomDistance = 5;
     private const float FurthestZoomDistance = 40;
 
@@ -16,8 +16,8 @@ public class CameraController : MonoBehaviour
     private float mouseSensitivity = 2.5f;
 
     private Transform _controlledCameraTransform;
-    private float _currentRotationAngleX;
-    private float _currentRotationAngleY;
+    private float _currentVerticalRotationAngle;
+    private float _currentHorizontalRotationAngle;
     
     private void Start()
     {
@@ -45,20 +45,20 @@ public class CameraController : MonoBehaviour
     private void ApplyRotation()
     {
         float rotationAngleY = Input.GetAxis("Mouse X") * mouseSensitivity;
-        _currentRotationAngleY += rotationAngleY;
+        _currentHorizontalRotationAngle += rotationAngleY;
 
         float rotationAngleX = Input.GetAxis("Mouse Y") * mouseSensitivity;
-        _currentRotationAngleX += rotationAngleX;
-        _currentRotationAngleX = Mathf.Clamp(
-            _currentRotationAngleX, 
-            MinimumRotationAngleX, 
-            MaximumRotationAngleX
+        _currentVerticalRotationAngle += rotationAngleX;
+        _currentVerticalRotationAngle = Mathf.Clamp(
+            _currentVerticalRotationAngle, 
+            MinimumVerticalRotationAngle, 
+            MaximumVerticalRotationAngle
         );
             
         gameObject.transform.localEulerAngles = new Vector3(
             0, 
-            _currentRotationAngleY, 
-            _currentRotationAngleX
+            _currentHorizontalRotationAngle, 
+            _currentVerticalRotationAngle
         );
     }
 
